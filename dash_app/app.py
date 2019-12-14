@@ -1,26 +1,27 @@
+import base64
+import datetime
+import itertools
+import math
+import os
+import re
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+import nltk
 import pandas as pd
 import plotly.graph_objs as go
-import settings
-import itertools
-import math
-import base64
-from flask import Flask
-import os
 import psycopg2
-import datetime
- 
-import re
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
+import settings
+from dash.dependencies import Input, Output
+from flask import Flask
+from nltk.corpus import stopwords
 from nltk.probability import FreqDist
 from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
 from textblob import TextBlob
+
+nltk.download('punkt')
+nltk.download('stopwords')
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -120,7 +121,8 @@ app.layout = html.Div(children=[
 def update_graph_live(n):
 
     # Loading data from Heroku PostgreSQL
-    DATABASE_URL = os.environ['DATABASE_URL']
+    #DATABASE_URL = os.environ['DATABASE_URL']
+    DATABASE_URL = 'postgres://tfhobhgswmlust:RKcbHgzChrTucG7Bu4N5BqoI9I@ec2-54-235-132-192.compute-1.amazonaws.com:5432/d4pnpcamd6ruv1'
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     query = "SELECT id_str, text, created_at, polarity, user_location, user_followers_count FROM {}".format(settings.TABLE_NAME)
     df = pd.read_sql(query, con=conn)
