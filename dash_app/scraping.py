@@ -100,6 +100,8 @@ def deEmojify(text):
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = 'postgres://tfhobhgswmlust:RKcbHgzChrTucG7Bu4N5BqoI9I@ec2-54-235-132-192.compute-1.amazonaws.com:5432/d4pnpcamd6ruv1'
+
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = conn.cursor()
