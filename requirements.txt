@@ -19,5 +19,5 @@ pandas==0.25.0
 nltk==3.4.4
 textblob==0.15.2
 tweepy==3.8.0
-psycopg2-binary==2.8.3
+psycopg2-binary==2.8.4
 Flask==1.1.1
